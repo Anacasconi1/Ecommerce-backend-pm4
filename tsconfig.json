@@ -20,8 +20,4 @@
     "resolveJsonModule": true,
     "types": ["multer", "jest"]
   },
-  "include": ["src/**/*","config/**/*",
-    "scripts/**/*",
-    "*.ts"],
-  "exclude": ["node_modules"]
 }
