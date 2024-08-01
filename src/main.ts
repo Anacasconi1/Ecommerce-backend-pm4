@@ -14,16 +14,9 @@ async function bootstrap() {
   const productsService = app.get(ProductsService)
   const appService = app.get(AppService)
 
-  const deleteUser = await appService.deleteUserExample()
-  const categoriesseeder = await categoriesService.addCategoriesSeeder()
-  const productsSeeder = await productsService.postSeed()
-  await deleteUser
-  if (deleteUser) {
-    await categoriesseeder
-    if(categoriesseeder){
-      await productsSeeder
-    }
-  }
+  await appService.deleteUserExample()
+  await categoriesService.addCategoriesSeeder()
+  await productsService.postSeed()
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Ecommerce-AnaCasconi1')
