@@ -40,10 +40,10 @@ import { User } from './Users/entities/user.entity';
       signOptions: {expiresIn: '1h'},
       secret: process.env.JWT_SECRET
     }), 
-    TypeOrmModule.forFeature([Product, Category, User])
+    TypeOrmModule.forFeature([Category, Product, User])
   ],
   controllers: [AppController],
-  providers: [AppService, ProductsService, CategoriesService],
+  providers: [AppService, CategoriesService, ProductsService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
