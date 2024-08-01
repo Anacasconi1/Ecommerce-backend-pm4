@@ -8,10 +8,6 @@ import { ApiTags } from '@nestjs/swagger';
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
-  @Get('/seeder')
-  async Seeder() {
-    return await this.categoriesService.addCategoriesSeeder();
-  }
 
   @Post()
   async create(@Body() category: Category) {

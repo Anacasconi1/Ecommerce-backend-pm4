@@ -40,11 +40,6 @@ export class ProductsController {
     return await this.productsService.createProduct(product);
   }
 
-  @Get('/seeder')
-  async Seeder() {
-    return await this.productsService.postSeed();
-  }
-
   @ApiBearerAuth()
   @Put(':id')
   @Roles(Role.Admin)
