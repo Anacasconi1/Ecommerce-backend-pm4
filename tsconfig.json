@@ -21,4 +21,5 @@
     "resolveJsonModule": true,
     "types": ["multer", "jest"]
   },
+  "include": ["./","src/**/*{.ts, .js}"]
 }
