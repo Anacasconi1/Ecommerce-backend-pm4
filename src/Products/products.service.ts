@@ -60,7 +60,6 @@ export class ProductsService {
         const catFinder = await this.categoriesRepository.findOne({
           where: { name: prod.category },
         });
-        console.log(catFinder);
         if (!catFinder) {
           throw new NotFoundException(
             'Debes cargar la categoria antes de cargar los productos',
