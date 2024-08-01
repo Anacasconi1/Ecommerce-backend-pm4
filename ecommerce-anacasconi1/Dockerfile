@@ -2,9 +2,7 @@ FROM node:18
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN ls -l package.json
+COPY ./ecommerce-anacasconi1/package*.json ./ecommerce-anacasconi1
 
 RUN npm install
 
