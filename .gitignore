@@ -1,0 +1,12 @@
+
+*/dist
+*/node_modules
+*/build
+
+.vscode/
+*.env
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
