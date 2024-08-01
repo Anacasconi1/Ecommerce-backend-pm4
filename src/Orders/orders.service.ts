@@ -4,7 +4,7 @@ import { Order } from './entities/order.entity';
 import { MoreThan, Repository } from 'typeorm';
 import { OrderDetails } from './entities/orderDetails.entity';
 import { User } from '../Users/entities/user.entity';
-import { Product } from '../products/entities/Product.entity';
+import { Product } from '../Products/entities/product.entity';
 import { In } from 'typeorm';
 import { OrderDto } from './dto/create-order.dto';
 

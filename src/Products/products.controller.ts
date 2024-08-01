@@ -12,7 +12,7 @@ import {
 
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
-import { Product } from './entities/Product.entity';
+import { Product } from './entities/product.entity';
 import { AuthGuard } from '../guards/Auth.guard';
 import { RolesGuard } from '../guards/Role.guard';
 import { Roles } from '../decorators/role.decorator';

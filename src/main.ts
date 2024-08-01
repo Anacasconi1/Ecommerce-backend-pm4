@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { CategoriesService } from './Categories/categories.service';
-import { ProductsService } from './products/products.service';
+import { ProductsService } from './Products/products.service';
 import { AppService } from './app.service';
 import * as cors from 'cors'
 

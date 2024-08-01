@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Product } from "../../products/entities/Product.entity";
+import { Product } from "../../Products/entities/product.entity";
 import { Order } from "./order.entity";
 import {v4 as uuid} from 'uuid'
 

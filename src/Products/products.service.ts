@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from './entities/Product.entity';
+import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 import { Category } from '../Categories/entities/category.entity';
 import * as seeder from '../helpers/sedder.json';
