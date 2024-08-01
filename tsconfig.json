@@ -26,6 +26,7 @@
       "@middlewares/*": ["src/middlewares/*"]
     },
     "baseUrl": "./",
+    "rootDir": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
@@ -36,5 +37,5 @@
     "resolveJsonModule": true,
     "types": ["multer", "jest"]
   },
-  "include": ["./","src/**/*{.ts, .js}"]
+  "include": ["./","src/**/*.ts"]
 }
