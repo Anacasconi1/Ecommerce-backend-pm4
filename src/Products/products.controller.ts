@@ -54,6 +54,7 @@ export class ProductsController {
     return ProductUpdated;
   }
 
+  @UseGuards(AuthGuard)
   @Delete(':id')
   async deleteProduct(@Param('id', ParseUUIDPipe) id: string) {
     const productDeleted = await this.productsService.deleteProduct(id);

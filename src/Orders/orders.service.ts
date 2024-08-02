@@ -51,7 +51,16 @@ export class OrdersService {
         orderDetails,
       });
       const response = await this.ordersRepository.save(neworder);
-      return response;
+      return {
+        order: {
+          id: response.id,
+          date: response.date,
+          orderDetail:{
+            id: orderDetails.id,
+            price: orderDetails.price
+        }
+      }
+    }
     } catch (error) {
       throw new BadRequestException(
         'El registro de una nueva categoria no pudo ejecutarse, revisa tu peticion',

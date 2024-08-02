@@ -64,7 +64,7 @@ export class AuthService {
             ...UserDto,
             password: EncryptedPassword,
           });
-          return { message: 'Usuario creado con exito', newUser };
+          return { message: `Usuario creado con exito: ${newUser.id}` };
         } else {
           throw new BadRequestException(
             'Las contraseñas provistas no coinciden',

@@ -7,7 +7,7 @@ export class TransformUsers implements NestInterceptor  {
         return next.handle().pipe(map(data => {
             if(data.length > 0){
                 const User = data.map(user =>{
-                const {password, isadmin,  ...cleanUser} =user
+                const {password, ...cleanUser} =user
                 return cleanUser
             })
             return {User, statusCode: context.switchToHttp().getResponse().statusCode}

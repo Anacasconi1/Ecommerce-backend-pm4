@@ -20,7 +20,6 @@ export class AuthController {
   @HttpCode(201)
   @ApiBody({type: UserDto})
   @Post('/signup')
-  @UseInterceptors(TransformUsers)
   CreateUser(@Body() UserDto: UserDto) {
     const newUserId = this.authService.createUser(UserDto);
     return newUserId;
