@@ -13,14 +13,14 @@ export class CategoriesService {
 
   async addCategoriesSeeder() {
     try {
-      seeder.map(async (seed) => {
+      for (const seed of seeder){
         const finder = await this.categoriesRepository.findOne({
           where: { name: seed.category }
         });
         if (!finder) {
           await this.categoriesRepository.save({ name: seed.category });
         }
-      });
+      }
       return { message: 'Se resolvió el seed correctamente' };
     } catch (error) {
       throw new NotFoundException('No es posible cargar el seed de categorias')

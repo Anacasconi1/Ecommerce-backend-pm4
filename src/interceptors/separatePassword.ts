@@ -5,7 +5,7 @@ import { map, Observable } from "rxjs";
 export class TransformUsers implements NestInterceptor  {
     intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> | Promise<Observable<any>> {
         return next.handle().pipe(map(data => {
-            if(data.length > 1){
+            if(data.length > 0){
                 const User = data.map(user =>{
                 const {password, isadmin,  ...cleanUser} =user
                 return cleanUser

@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginUserDto } from './dto/loginUser.dto';
 import { UserDto } from '../Users/dto/user.dto';
 import { TransformUsers } from '../interceptors/separatePassword';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBody } from '@nestjs/swagger';
 
 
 @ApiTags('Auth')
@@ -11,12 +11,14 @@ import { ApiTags } from '@nestjs/swagger';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @HttpCode(201)
+  @ApiBody({type: LoginUserDto})
   @Post('signin')
   Signin(@Body() Credentials: LoginUserDto) {
     return this.authService.SignIn(Credentials);
   }
 
   @HttpCode(201)
+  @ApiBody({type: UserDto})
   @Post('/signup')
   @UseInterceptors(TransformUsers)
   CreateUser(@Body() UserDto: UserDto) {

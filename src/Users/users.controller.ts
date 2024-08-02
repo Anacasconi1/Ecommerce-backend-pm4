@@ -21,7 +21,7 @@ import { TransformUsers } from '../interceptors/separatePassword';
 import { RolesGuard } from '../guards/Role.guard';
 import { Roles } from '../decorators/role.decorator';
 import { Role } from '../roles.enum';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags, ApiBody } from '@nestjs/swagger';
 
 @ApiTags('Users')
 @Controller('users')
@@ -54,20 +54,26 @@ export class UsersController {
   }
 
   @HttpCode(200)
+  @ApiBearerAuth()
+  @ApiBody({type: UserDto})
   @Put(':id')
   @UseGuards(AuthGuard)
   update(@Param('id', ParseUUIDPipe) id: string, @Body() UserDto: UserDto) {
     const userUpdatedId = this.usersService.UpdateUser(id, UserDto);
     return userUpdatedId;
   }
+
   @HttpCode(200)
+  @ApiBearerAuth()
   @Delete(':id')
   @UseGuards(AuthGuard)
   remove(@Param('id', ParseUUIDPipe) id: string) {
     const userRemovedId = this.usersService.DeleteUser(id);
     return userRemovedId;
   }
+
   @HttpCode(200)
+  @ApiBearerAuth()
   @Get(':id')
   @UseGuards(AuthGuard)
   @UseInterceptors(TransformUsers)
