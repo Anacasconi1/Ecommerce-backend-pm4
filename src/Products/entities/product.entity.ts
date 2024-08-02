@@ -26,7 +26,7 @@ export class Product {
   @ManyToOne(()=> Category)
   category: Category
 
-  @ManyToMany(()=> OrderDetails, orderDetails => orderDetails.products)
+  @ManyToMany(()=> OrderDetails, orderDetails => orderDetails.products, { cascade: true, onDelete: 'CASCADE' })
   @JoinTable()
   orderDetails: OrderDetails[]
 }

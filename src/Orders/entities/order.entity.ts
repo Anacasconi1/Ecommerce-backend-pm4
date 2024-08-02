@@ -9,7 +9,7 @@ export class Order {
     @PrimaryGeneratedColumn('uuid')
     id:string = uuid();
 
-    @ManyToOne(()=> User, (user)=> user.orders)
+    @ManyToOne(()=> User, (user)=> user.orders, { cascade: true, onDelete: 'CASCADE' })
     user: User
 
     @Column({nullable:false})

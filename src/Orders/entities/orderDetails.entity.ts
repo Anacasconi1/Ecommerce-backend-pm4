@@ -12,7 +12,7 @@ export class OrderDetails{
     @Column({type: "decimal", scale: 2})
     price: number
 
-    @OneToOne(()=> Order, order => order.orderDetails)
+    @OneToOne(()=> Order, order => order.orderDetails, { cascade: true, onDelete: 'CASCADE' })
     @JoinColumn()
     order: Order
 
