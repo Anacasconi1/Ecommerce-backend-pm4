@@ -7,7 +7,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 import { Category } from '../Categories/entities/category.entity';
-import * as seeder from '../helpers/sedder.json';
+import * as seeder from '../Seed/sedder.json';
+import { queryParamsLimitPage } from '../helpers/QueryParamsLimitPage';
 
 @Injectable()
 export class ProductsService {
@@ -22,9 +23,12 @@ export class ProductsService {
     try {
       const products = await this.productRepository.find({
         relations: { category: true },
+        order: {
+          name: 'ASC',
+        },
       });
       if (products) {
-        const response = this.queryParamsLimitPage(limit, page, products);
+        const response = queryParamsLimitPage(limit, page, products);
         return response;
       }
     } catch (error) {
@@ -131,20 +135,4 @@ export class ProductsService {
     return { message: 'No se encontró el producto' };
   }
 
-  queryParamsLimitPage(
-    limit: number,
-    page: number,
-    products: Product[],
-  ): Product[] {
-    if (!limit) {
-      limit = 5;
-    }
-    if (!page) {
-      page = 1;
-    }
-    const start = (page - 1) * limit;
-    const end = start + limit;
-    products = products.slice(start, end);
-    return products;
-  }
 }

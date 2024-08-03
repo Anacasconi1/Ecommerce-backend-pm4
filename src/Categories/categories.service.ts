@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from './entities/category.entity';
 import { Repository } from 'typeorm';
-import * as seeder from '../helpers/sedder.json';
+import * as seeder from '../Seed/sedder.json';
 
 @Injectable()
 export class CategoriesService {

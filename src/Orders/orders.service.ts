@@ -88,4 +88,33 @@ export class OrdersService {
       );
     }
   }
+
+  async cancelOrder (id: string) {
+    try {
+      const orderFinder = await this.ordersRepository.findOne({where: {
+        id
+      }, relations:{
+        orderDetails: true
+      }});
+      if(orderFinder){
+        const orderDetail = orderFinder.orderDetails
+        const orderDetailsWithProducts = await this.orderDetailsRepository.findOne({where: {
+          id: orderDetail.id
+        }, relations: {
+          products: true
+        }})
+        orderDetailsWithProducts.products.map(async (product) => {
+          product.stock = product.stock + 1
+          await this.productsRepository.save(product)
+        })
+        await this.ordersRepository.delete(id)
+        await this.orderDetailsRepository.remove(orderDetail)
+        return {message: `La orden ${id} se ha cancelado con exito`}
+      }else {
+        return {message: 'No se fue posible encontrar la orden, revisa los datos proporcionados'}
+      }
+    } catch (error) {
+      throw new BadRequestException('Algo salió mal en la peticion, no es posible ejecutarla')
+    }
+  }
 }
