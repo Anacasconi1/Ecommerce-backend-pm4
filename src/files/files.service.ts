@@ -22,11 +22,7 @@ export class FilesService {
       throw new NotFoundException({message: "No se pudo encontrar el producto, verifica el id"})
     }else {
       const imgUrl = (await this.filesRepository.uploadImg(file)).url; 
-      const ProductWNI = {
-        imgUrl: imgUrl,
-        ...product
-      }
-      await this.productsRepository.update(id, ProductWNI)
+      await this.productsRepository.update(id, {imgUrl})
       return {message: "La imagen del producto se ha actualizado con exito"}
     }
   }
