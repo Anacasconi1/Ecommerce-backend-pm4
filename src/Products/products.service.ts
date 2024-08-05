@@ -9,6 +9,7 @@ import { Repository } from 'typeorm';
 import { Category } from '../Categories/entities/category.entity';
 import * as seeder from '../Seed/sedder.json';
 import { queryParamsLimitPage } from '../helpers/QueryParamsLimitPage';
+import { ProductDto } from './dto/products.dto';
 
 @Injectable()
 export class ProductsService {
@@ -90,7 +91,7 @@ export class ProductsService {
     }
   }
 
-  async createProduct(product: Partial<Product>): Promise<Product> {
+  async createProduct(product: ProductDto): Promise<Product> {
     try {
       const ProductAlreadyExist = await this.productRepository.findOne({
         where: {
@@ -98,8 +99,20 @@ export class ProductsService {
         },
       });
       if (!ProductAlreadyExist) {
-        return await this.productRepository.save(product);
+        const CategoryExist = await this.categoriesRepository.findOne({where: {
+          name: product.category
+        }})
+        if (CategoryExist){
+          const productToSave: Partial<Product> = {
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            stock: product.stock,
+            category: CategoryExist
+          }
+          return await this.productRepository.save(productToSave)
       }
+    }
     } catch (error) {
       throw new BadRequestException(
         'No se pudo completar la peticion porque el producto ya existe o porque los datos proporcionados no cumplen con los requeridos',
@@ -133,6 +146,16 @@ export class ProductsService {
       return { message: 'El producto se eliminó con exito' };
     }
     return { message: 'No se encontró el producto' };
+  }
+
+  async addStock (id:string, newStockToSum: number) {
+    const productFinder = await this.productRepository.findOne({where: {id}})
+    if(productFinder){
+      productFinder.stock = productFinder.stock + newStockToSum
+      await this.productRepository.save(productFinder)
+    }else {
+      throw new NotFoundException('No se encontró el producto, revisa el id proporcionado')
+    }
   }
 
 }

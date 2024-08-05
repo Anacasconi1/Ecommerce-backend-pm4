@@ -18,6 +18,7 @@ import { RolesGuard } from '../guards/Role.guard';
 import { Roles } from '../decorators/role.decorator';
 import { Role } from '../roles.enum';
 import { ApiBearerAuth, ApiTags, ApiBody } from '@nestjs/swagger';
+import { ProductDto } from './dto/products.dto';
 
 @ApiTags('Products')
 @Controller('products')
@@ -36,8 +37,9 @@ export class ProductsController {
   }
 
   @ApiBody({type: Product})
+  @UseGuards(AuthGuard)
   @Post()
-  async createProduct(@Body() product): Promise<Product> {
+  async createProduct(@Body() product:ProductDto): Promise<Product> {
     return await this.productsService.createProduct(product);
   }
 
@@ -54,7 +56,21 @@ export class ProductsController {
     return ProductUpdated;
   }
 
-  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
+  @ApiBody({type: 'string'})
+  @Put(':id')
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
+  async UpdateStockProduct(@Param('id', ParseUUIDPipe) id: string, @Body() newStockToAdd:string ) {
+    const ProductUpdated = await this.productsService.addStock(
+      id,
+      Number(newStockToAdd)
+    );
+    return ProductUpdated;
+  }
+
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
   @Delete(':id')
   async deleteProduct(@Param('id', ParseUUIDPipe) id: string) {
     const productDeleted = await this.productsService.deleteProduct(id);
