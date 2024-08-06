@@ -21,10 +21,7 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder()
     .setTitle('API E-commerce')
     .setDescription(
-      'Servidor de E-commerce.',
-      'Para realizar peticiones a las rutas protegidas debes ingresar el token que es dado al iniciar sesion, pero a su vez hay ciertas rutas que solo pueden ser ejecutadas por usuarios administradores.',
-      'Para realizar un cambio de roles, comuniquese con la desarrolladora.',
-      'Mail de contacto: sabriicasconii@gmail.com',
+      'Servidor de E-commerce. Para realizar peticiones a las rutas protegidas debes ingresar el token que es dado al iniciar sesion, pero a su vez hay ciertas rutas que solo pueden ser ejecutadas por usuarios administradores. Para realizar un cambio de roles, comuniquese con la desarrolladora. Mail de contacto: sabriicasconii@gmail.com',
     )
     .setVersion('1.0')
     .addBearerAuth()
