@@ -19,9 +19,9 @@ async function bootstrap() {
   await productsService.postSeed()
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Ecommerce-AnaCasconi1')
+    .setTitle('API E-commerce')
     .setDescription(
-      'Esta api creada con Nest está construida para el Proyecto del Modulo 4 de Henry, especializacion de backend.',
+      'Servidor de E-commerce, para realizar peticionesa las rutas protegidas debes ingresar el token que es dado al iniciar sesion, pero a su vez hay ciertas rutas que solo pueden ser ejecutadas por usuarios administradores. Para realizar un cambio de roles, comuniquese con sistemas.\nMail de contacto: sabriicasconii@gmail.com',
     )
     .setVersion('1.0')
     .addBearerAuth()
