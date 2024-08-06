@@ -36,7 +36,7 @@ export class ProductsController {
     );
   }
 
-  @ApiBody({type: Product})
+  @ApiBody({type: ProductDto})
   @UseGuards(AuthGuard)
   @Post()
   async createProduct(@Body() product:ProductDto): Promise<Product> {
@@ -44,7 +44,7 @@ export class ProductsController {
   }
 
   @ApiBearerAuth()
-  @ApiBody({type: Product})
+  @ApiBody({type: ProductDto})
   @Put(':id')
   @Roles(Role.Admin)
   @UseGuards(AuthGuard, RolesGuard)
