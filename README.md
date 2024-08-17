@@ -1,4 +1,5 @@
 <h6>Open API: https://ecommerce-backend-yvwe.onrender.com/api</h6>
+<h5>IMPORTANTE: Al estar deployado en Render, la primera vez el proyecto tarda aproximadamente un minuto en cargar. Disculpe las molestias.</h5>
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
