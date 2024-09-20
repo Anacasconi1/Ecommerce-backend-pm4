@@ -11,7 +11,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @HttpCode(201)
   @ApiBody({type: LoginUserDto})
-  @Post('signin')
+  @Post('/signin')
   Signin(@Body() Credentials: LoginUserDto) {
     return this.authService.SignIn(Credentials);
   }
